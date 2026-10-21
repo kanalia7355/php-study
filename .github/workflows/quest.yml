@@ -1,0 +1,33 @@
+name: PHP Study Quest
+on:
+  push:
+    branches: [main, 'codex/**']
+    paths-ignore: ['progress/**', 'README.md']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  grade:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@ec406be512d7077f68eed36e63f4d91bc006edc4
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo, tokenizer
+          coverage: none
+      - name: Verify grader behavior
+        run: php tests/system.php
+      - name: Grade chapter 1 submissions
+        env:
+          QUEST_REPORT: ${{ runner.temp }}/quest-result.json
+        run: |
+          status=0
+          for task in ch01-ex01 ch01-ex02 ch01-ex03 ch01-ex04 ch01-ex05; do
+            php scripts/quest.php check "$task" || status=1
+          done
+          exit "$status"

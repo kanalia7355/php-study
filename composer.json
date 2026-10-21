@@ -1,0 +1,12 @@
+{
+  "name": "kanalia7355/php-study",
+  "description": "PHP Study Quest: learner-written exercises with automatic grading",
+  "type": "project",
+  "require": {"php": "^8.3", "ext-json": "*", "ext-tokenizer": "*", "ext-mbstring": "*", "ext-pdo": "*"},
+  "scripts": {
+    "quest": "@php scripts/quest.php",
+    "check": "@php scripts/quest.php check",
+    "test": "@php tests/system.php"
+  },
+  "config": {"allow-plugins": false}
+}
