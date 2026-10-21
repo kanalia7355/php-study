@@ -1,0 +1,23 @@
+--- a/exercises/chapter_16_namespaces_exercise.ipynb
++++ b/exercises/chapter_16_namespaces_exercise.ipynb
+@@ -114,14 +114,14 @@
+     "   - `generateId($prefix)`: IDを生成\n",
+     "   - `validateEmail($email)`: メールを検証\n",
+     "\n",
+-    "2. グローバル名前空間に以下の関数を作成\n",
+-    "   - `date()`: 独自の日付処理（PHPのビルトイン関数と名前が衝突）\n",
++    "2. `App\\Custom`名前空間に以下の関数を作成\n",
++    "   - `date()`: 独自の日付処理（名前空間内で定義し、PHP組込み関数と区別する）\n",
+     "   - `strlen()`: 独自の文字列長処理\n",
+     "\n",
+-    "3. 両方の関数を使うコードを作成\n",
+-    "\n",
+-    "**ヒント**:\n",
+-    "- グローバル関数は`function functionName() {...}`\n",
++    "3. グローバル名前空間から独自関数と組込み関数の両方を呼び出し、違いを確認する\n",
++    "\n",
++    "**ヒント**:\n",
++    "- PHP組込み関数と同名の関数はグローバル名前空間に再定義できません。独自関数は別の名前空間に置きます。\n",
+     "- 名前空間内の関数は`namespace App\\Utils; function ...`"
+    ]
+   },
